@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web
+spec:
+  containers:
+  - name: mhttpd
+    image: nioliz/myhttpd
+    volumeMounts:
+      - name: app
+        mountPath: /app
+  initContainers:
+  - name: init
+    image: busybox
+    command: ['sh', '-c', 'wget -O- https://tinyurl.com/otus-k8s-intro | sh']
+    volumeMounts:
+      - name: app
+        mountPath: /app
+  volumes:
+  - name: app
+    emptyDir: {}

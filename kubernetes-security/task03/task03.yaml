@@ -11,16 +11,17 @@ metadata:
   namespace: dev
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
   name: jane-admin-binding
   namespace: dev
 subjects:
 - kind: ServiceAccount
   name: jane
+  namespace: dev
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
+  kind: ClusterRole
   name: admin
 ---
 apiVersion: v1
@@ -30,14 +31,23 @@ metadata:
   namespace: dev
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRole
+metadata:
+  name: kenview
+  labels: 
+    rbac.authorization.k8s.io/aggregate-to-view: "true"
+  namespace: dev
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
 metadata:
   name: ken-admin-binding
   namespace: dev
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: view
+  kind: ClusterRole
+  name: kenview
 subjects:
 - kind: ServiceAccount
   name: ken
+  namespace: dev

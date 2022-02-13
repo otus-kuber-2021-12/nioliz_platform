@@ -15,14 +15,13 @@ kind: RoleBinding
 metadata:
   name: jane-admin-binding
   namespace: dev
+subjects:
+- kind: ServiceAccount
+  name: jane
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
+  kind: Role
   name: admin
-subjects:
-- apiGroup: rbac.authorization.k8s.io
-  kind: User
-  name: jane
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -37,9 +36,8 @@ metadata:
   namespace: dev
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
+  kind: Role
   name: view
 subjects:
-- apiGroup: rbac.authorization.k8s.io
-  kind: User
+- kind: ServiceAccount
   name: ken

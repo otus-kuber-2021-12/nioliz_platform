@@ -21,7 +21,7 @@ subjects:
   namespace: dev
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
+  kind: ClusterRole
   name: admin
 ---
 apiVersion: v1

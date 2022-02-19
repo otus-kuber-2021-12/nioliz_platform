@@ -18,7 +18,8 @@ spec:
   initContainers:
   - name: init
     image: busybox
-    command: ['sh', '-c', 'wget -O- https://tinyurl.com/otus-k8s-intro | sh']
+      #    command: ['sh', '-c', 'wget --no-check-certificate -O- https://tinyurl.com/otus-k8s-intro | sh']
+    command: ['sh', '-c', 'wget --no-check-certificate -O- https://gist.githubusercontent.com/Konstantinov86/3364e7f98124f7f183a2b4a5bb812d4d/raw/fbc5c6b5465981ed56dc7ecc454c72148e8e85d3/otus-k8s-intro |sh']
     volumeMounts:
       - name: app
         mountPath: /app
